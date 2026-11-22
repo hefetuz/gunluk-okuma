@@ -236,3 +236,6 @@ body:is([data-page=nearby],[data-page=profile]) .bar {display:none}
 body[data-page=nearby] .nav,body[data-page=nearby] .nav[data-liquid-ready] {background:var(--kit-panel);backdrop-filter:none;-webkit-backdrop-filter:none;overflow:hidden}
 
 body[data-page=nearby] .nav > .liquid-gl-surface {display:none!important}
+
+body[data-page] .nav,body[data-page] .nav[data-liquid-ready]{background:var(--kit-panel);backdrop-filter:none;-webkit-backdrop-filter:none;overflow:hidden}
+body[data-page] .nav>.liquid-gl-surface{display:none!important}
