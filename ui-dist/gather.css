@@ -3,3 +3,5 @@ html:has(body[data-page=today]){background:#0b2443}body[data-page=today]{backgro
 body[data-page=nearby] .nav>.liquid-gl-surface{display:none!important}
 
 #page-nearby #atlas-drawer-list .hall-save[aria-pressed=true]{background:transparent}
+
+#page-nearby #atlas-drawer-list .hall-save[aria-pressed=true]{background:transparent!important}

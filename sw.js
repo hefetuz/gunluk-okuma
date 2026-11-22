@@ -1,5 +1,5 @@
-const CACHE = 'gather-shell-0061877d945e';
-const SHELL = ['./', './index.html', './ui-dist/gather.js?v=e3b0c44298fc', './ui-dist/gather.css?v=f92de3d32d07', './icon.svg', './manifest.webmanifest', './fonts/geist-serif.woff2', './fonts/geist-sans.woff2', './fonts/geist-mono.woff2', './ui-dist/gather.webp'];
+const CACHE = 'gather-shell-3e7f04374c25';
+const SHELL = ['./', './index.html', './ui-dist/gather.js?v=e3b0c44298fc', './ui-dist/gather.css?v=b30eb6be0f4b', './icon.svg', './manifest.webmanifest', './fonts/geist-serif.woff2', './fonts/geist-sans.woff2', './fonts/geist-mono.woff2', './ui-dist/gather.webp'];
 const assets = new Set(SHELL.map((path) => new URL(path, self.registration.scope).href));
 
 self.addEventListener('install', (event) => {
