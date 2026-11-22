@@ -1,0 +1,258 @@
+/* Meetings share the app palette while retaining the map's native gesture layers. */
+body[data-page=nearby] {
+  --map-shadow: var(--kit-shadow);
+  --map-tint: color-mix(in srgb, var(--kit-blue) 12%, var(--kit-panel));
+  color: var(--kit-text);
+  background: var(--kit-bg);
+  color-scheme: inherit;
+}
+#page-nearby .atlas-map-layer, #page-nearby #real-meeting-map {background:var(--kit-bg)}
+#page-nearby :is(.atlas-search,.atlas-sheet,.leaflet-control-zoom,#atlas-search-area,#atlas-place-results,#atlas-status:not(:empty),#real-map-error) {
+  background: var(--kit-glass);
+  color: var(--kit-text);
+  border: 1px solid var(--kit-rule);
+  box-shadow: var(--map-shadow);
+}
+#page-nearby .atlas-sheet {border-radius:24px}
+#page-nearby :is(.atlas-sheet h1,.atlas-drawer-heading h2,.atlas-search-dialog h2,#real-meeting-failed h2,#real-meeting-empty h2),
+#hall-detail-content :is(h2,h3,h4) {
+  font-family:var(--sans);font-weight:700;letter-spacing:-.035em;color:var(--kit-text)
+}
+#page-nearby :is(.atlas-search input,.atlas-hall-title,.atlas-search-dialog header span,.atlas-search-dialog input,.atlas-place-info strong,.atlas-current-area strong,.atlas-search-step strong) {color:var(--kit-text)}
+#page-nearby :is(.atlas-search label>span,.atlas-address,.atlas-next-meeting span,.atlas-tag,.atlas-source,.eyebrow,#real-meeting-count,#real-meeting-failed p,#real-meeting-empty p,.atlas-suggestions-label,.atlas-current-area small,.atlas-place-info small,.atlas-search-step span,#atlas-mobile-status,.atlas-search-credit) {color:var(--kit-secondary)}
+#page-nearby input::placeholder {color:var(--kit-secondary);opacity:1}
+#page-nearby :is(.atlas-search>svg,.atlas-route,.atlas-source a,.atlas-next-meeting strong,#atlas-search-area,.atlas-card-top .hall-save) {color:var(--kit-blue)}
+#page-nearby :is(.atlas-round,.atlas-list-button,#atlas-back-map,.atlas-place-switch button,.atlas-filters button,.atlas-filters #atlas-language,.atlas-search-periods button,.atlas-search-dialog header button,#real-reset) {
+  background:var(--kit-panel);border-color:var(--kit-rule);color:var(--kit-blue);box-shadow:none;
+}
+#page-nearby .atlas-filters button {box-shadow:var(--map-shadow)}
+#page-nearby :is(.atlas-filters button,.atlas-place-switch button,.atlas-search-periods button)[aria-pressed=true],
+#page-nearby .atlas-filters #atlas-language[aria-pressed=true],
+#page-nearby :is(.atlas-search .ui-button,#atlas-confirm-search,#real-retry) {
+  background:var(--kit-blue);color:var(--kit-panel);border-color:transparent;
+}
+#page-nearby .atlas-hall-card {background:var(--kit-panel)}
+#page-nearby .atlas-next-meeting {border-color:var(--kit-rule)}
+#page-nearby :is(.atlas-drag-handle,.atlas-drawer-handle) span {background:var(--kit-secondary);opacity:.45}
+#page-nearby .atlas-place-art {background:var(--map-tint);color:var(--kit-text)}
+#page-nearby .atlas-place-art::after {background:linear-gradient(100deg,transparent 48%,var(--kit-rule) 49% 57%,transparent 58%)}
+#page-nearby .atlas-place-art>span {color:var(--kit-blue);background:var(--kit-panel)}
+#page-nearby :is(.atlas-results-drawer,.atlas-search-dialog) {background:var(--kit-bg);color:var(--kit-text);border-color:var(--kit-rule)}
+#page-nearby :is(.atlas-destination-card,.atlas-search-step,.atlas-search-footer,#atlas-drawer-list button) {
+  background:var(--kit-panel);color:var(--kit-text);border-color:var(--kit-rule);box-shadow:none
+}
+#page-nearby :is(.atlas-destination-card,.atlas-search-step) {border-radius:18px}
+#page-nearby :is(.atlas-current-area,.atlas-mobile-places button,#atlas-place-results button) {background:transparent;color:var(--kit-text);border-color:var(--kit-rule)}
+#page-nearby :is(.atlas-place-glyph,.atlas-location-icon,#atlas-drawer-list button[aria-current=true],.atlas-card-top .hall-save[aria-pressed=true]) {background:var(--map-tint);color:var(--kit-blue)}
+#page-nearby :is(.atlas-card-top,.atlas-language-option) [aria-pressed=true] svg {fill:currentColor}
+#page-nearby #atlas-drawer-list button strong {color:var(--kit-text)}
+#page-nearby #atlas-drawer-list button :is(span,small) {color:var(--kit-secondary)}
+#page-nearby .atlas-search-dialog form {background:var(--kit-bg);border-color:var(--kit-rule);color:var(--kit-secondary)}
+#page-nearby .atlas-search-language select, #page-nearby #atlas-clear-search {color:var(--kit-blue)}
+#page-nearby .atlas-search-language option {background:var(--kit-panel);color:var(--kit-text)}
+#page-nearby .leaflet-control-zoom a {background:var(--kit-panel);color:var(--kit-blue);width:44px;height:44px;line-height:44px;border-color:var(--kit-rule)}
+#page-nearby .leaflet-control-attribution {background:var(--kit-panel);color:var(--kit-secondary)}
+#page-nearby .leaflet-control-attribution a {color:var(--kit-blue)}
+#page-nearby :is(#atlas-search-close,.leaflet-control-zoom a) {display:grid;place-items:center}
+#page-nearby :is(#atlas-search-close,.atlas-location-icon,.leaflet-control-zoom a) svg {width:20px;height:20px}
+#page-nearby .atlas-source a svg,#hall-detail-content .hall-detail-footer a svg {width:1em;height:1em;vertical-align:-.12em}
+#hall-detail-content .hall-detail-footer a svg {margin-inline-start:.25em}
+#page-nearby .maplibregl-ctrl-attrib-button:has(svg),
+#page-nearby .maplibregl-ctrl-attrib.maplibregl-compact:has(.maplibregl-ctrl-attrib-button svg)::after {background-image:none}
+#page-nearby .maplibregl-ctrl-attrib-button svg {display:block;width:16px;height:16px;margin:4px;color:inherit}
+#page-nearby .hall-price-pin:not(.is-selected)>span {background:var(--kit-panel);color:var(--kit-text);border-color:var(--kit-rule);box-shadow:var(--map-shadow)}
+#page-nearby .hall-price-pin.is-selected>span {background:var(--kit-blue);color:var(--kit-panel);border-color:white}
+#hall-detail-content :is(.hall-detail-next,.hall-congregation), .native-sheet .atlas-language-option {
+  background:var(--kit-bg);color:var(--kit-text);border-color:var(--kit-rule);box-shadow:none
+}
+#hall-detail-content :is(dd,.hall-detail-next strong) {color:var(--kit-text)}
+#hall-detail-content :is(.hall-detail-address,.eyebrow,dt,.real-card-note,.hall-detail-next span,.hall-detail-next small),
+.native-sheet .atlas-language-option small {color:var(--kit-secondary)}
+#hall-detail-content .hall-detail-footer :is(a,button), .native-sheet .atlas-language-option[aria-pressed=true] {background:var(--map-tint);color:var(--kit-blue);border-color:var(--kit-rule)}
+#page-nearby :focus-visible {outline:2px solid var(--kit-blue);outline-offset:2px}
+#page-nearby :is(.atlas-search-step summary,button:not(:disabled),.atlas-route):active {opacity:.76}
+@media (prefers-reduced-transparency:reduce) {
+  #page-nearby :is(.atlas-search,.atlas-sheet,.atlas-results-drawer,#atlas-search-area) {background:var(--kit-panel);backdrop-filter:none}
+}
+#page-nearby .atlas-select-picker {position:relative;display:inline-flex;align-items:center;max-width:60%;min-width:0;color:var(--kit-blue)}
+#page-nearby .atlas-select-picker select {appearance:none;max-width:100%;padding-inline-end:24px}
+#page-nearby .atlas-select-picker svg {position:absolute;inset-inline-end:3px;width:14px;height:14px;pointer-events:none}
+
+#page-nearby .atlas-search, #page-nearby .atlas-sheet {
+  background:var(--kit-glass);
+  border:1px solid color-mix(in srgb,var(--kit-highlight) 65%,var(--kit-rule));
+  box-shadow:var(--kit-shadow);
+}
+#page-nearby .atlas-search {border-radius:24px}
+#page-nearby .atlas-sheet {border-radius:22px 22px 12px 12px}
+#page-nearby .atlas-hall-card {border-radius:12px;border-color:var(--kit-rule)}
+#page-nearby .atlas-search input {color:var(--kit-text);font:500 var(--type-body)/1.35 var(--font-interface)}
+#page-nearby .atlas-next-meeting strong, #page-nearby .atlas-sheet-heading .eyebrow,
+#page-nearby #atlas-drawer-region, #page-nearby .atlas-tag {
+  font:500 var(--type-caption)/1.45 var(--font-reference);letter-spacing:.015em;font-variant-numeric:tabular-nums;
+}
+#page-nearby :is(.atlas-sheet-heading h1,.atlas-drawer-heading h2,.atlas-search-dialog h2) {
+  font:550 var(--type-title)/1.1 var(--font-interface);letter-spacing:-.045em;
+}
+#page-nearby .atlas-hall-title {font:550 1.125rem/1.35 var(--font-interface);letter-spacing:-.025em}
+#page-nearby .atlas-search-dialog-inner {max-width:46rem}
+#page-nearby .atlas-search-dialog header {border-bottom:1px solid var(--kit-rule);padding-bottom:12px}
+#page-nearby :is(.atlas-destination-card,.atlas-search-step) {border-radius:8px 20px 20px 8px;border-inline-start:3px solid var(--kit-rule)}
+#page-nearby .atlas-search-step[open],#page-nearby .atlas-destination-card:focus-within {border-inline-start-color:var(--kit-blue)}
+#page-nearby .atlas-search-periods button {font-family:var(--font-interface)}
+@media(min-width:960px) {
+  #page-nearby .atlas-controls {width:clamp(340px,34vw,480px)}
+  #page-nearby .atlas-sheet {inset:auto max(28px,env(safe-area-inset-right)) calc(100px + env(safe-area-inset-bottom)) auto;width:clamp(330px,29vw,415px);max-height:calc(100dvh - 210px);padding:20px}
+}
+@media(max-width:799px) {
+  #page-nearby .atlas-sheet {border-radius:22px;padding-inline:18px}
+  #page-nearby .atlas-next-meeting strong {font-size:.6875rem}
+}
+
+#page-nearby .atlas-sheet {overflow:auto;overscroll-behavior:contain}
+#page-nearby .atlas-hall-card {
+  display:grid;grid-template-columns:minmax(0,1fr);gap:14px;padding:0;
+  background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible
+}
+#page-nearby .atlas-card-heading {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:8px}
+#page-nearby .atlas-card-heading .hall-save {width:44px;height:44px;align-self:start;color:var(--kit-blue)}
+#page-nearby .atlas-hall-title {display:block;max-width:none;margin:0;min-height:0;font:620 clamp(1.25rem,2vw,1.55rem)/1.22 var(--font-interface);overflow-wrap:anywhere}
+#page-nearby .atlas-address {display:block;margin:4px 0 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:400 .9rem/1.45 var(--font-interface)}
+#page-nearby .atlas-next-meeting {display:grid;justify-content:start;gap:3px;padding:0;margin:0;border:0}
+#page-nearby .atlas-next-meeting span {display:block;font:500 .83rem/1.35 var(--font-interface)}
+#page-nearby .atlas-next-meeting :is(time,strong) {font:600 clamp(1.1rem,2vw,1.35rem)/1.3 var(--font-interface);color:var(--kit-text);letter-spacing:-.025em;text-align:start;font-variant-numeric:tabular-nums}
+#page-nearby .atlas-card-actions {display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:4px 12px;margin:0}
+#page-nearby .atlas-card-actions button {min-height:44px;font:550 .9rem/1.3 var(--font-interface)}
+#page-nearby .atlas-card-actions .atlas-details-link {display:inline-flex;align-items:center;gap:6px;flex:0 1 auto;color:var(--kit-blue);border:0;background:transparent;padding:4px 0}
+#page-nearby .atlas-card-actions .atlas-details-link svg {width:16px;height:16px}
+#page-nearby .atlas-list-button {min-height:44px;font-size:.9rem}
+#page-nearby .atlas-sheet-heading .eyebrow {font:500 .86rem/1.4 var(--font-interface)}
+#hall-detail-content .real-card-times dd {display:flex;align-items:flex-start;flex-direction:column;gap:5px;white-space:normal}
+#hall-detail-content .real-card-times button {max-width:100%;min-height:44px}
+@media(max-width:799px) {
+  #page-nearby .atlas-sheet {max-height:calc(100dvh - 200px - env(safe-area-inset-bottom));padding:9px 18px 13px}
+  #page-nearby .atlas-hall-card {gap:10px}
+  #page-nearby .leaflet-control-zoom {margin-bottom:calc(355px + env(safe-area-inset-bottom))}
+}
+#page-nearby .atlas-hall-title:hover {text-decoration:none}
+#page-nearby .atlas-card-actions .meeting-plan-button {display:inline-flex;align-items:center;justify-content:center;padding:8px 16px;border-radius:12px;background:var(--kit-blue);color:var(--kit-panel)}
+.personal-meeting-plan {margin:26px 0;padding:20px;background:var(--kit-panel);border:1px solid var(--kit-rule);border-radius:20px;color:var(--kit-text)}
+.personal-meeting-plan h2 {margin:0 0 10px;font:600 1.2rem/1.3 var(--font-interface);letter-spacing:-.025em}
+.personal-meeting-plan h3 {margin:4px 0;font:550 1.02rem/1.4 var(--font-interface)}
+.personal-meeting-plan p {margin:0;color:var(--kit-secondary);font:400 .92rem/1.5 var(--font-interface)}
+.personal-meeting-plan time {color:var(--kit-blue);font:500 .78rem/1.5 var(--font-reference)}
+.personal-meeting-plan article {border-top:1px solid var(--kit-rule);padding-top:14px;margin-top:14px}
+.personal-meeting-plan a,.personal-meeting-plan .meeting-plan-button,#hall-detail-content .meeting-plan-button {
+  display:inline-flex;align-items:center;min-height:44px;border:0;background:none;padding:0;color:var(--kit-blue);font:570 .9rem/1.35 var(--font-interface)
+}
+#page-nearby .atlas-card-actions button[data-planned=true] {background:var(--map-tint);color:var(--kit-blue)}
+
+#page-nearby .atlas-sheet-heading {align-items:center;gap:12px;margin-block:0 14px}
+#page-nearby .atlas-sheet-heading>div {min-width:0}
+#page-nearby #atlas-list {
+  display:inline-flex;align-items:center;gap:8px;max-width:100%;min-height:44px;
+  padding:7px 12px;border:1px solid var(--kit-rule);border-radius:14px;
+  color:var(--kit-text);background:var(--kit-bg);text-align:start
+}
+#page-nearby #atlas-list svg {width:16px;height:16px;flex:none;color:var(--kit-blue)}
+#page-nearby #atlas-list svg:last-child {width:13px;height:13px}
+#page-nearby #real-meeting-count {font:550 .87rem/1.35 var(--font-interface);color:inherit;overflow-wrap:anywhere}
+
+#page-nearby .atlas-address {white-space:normal;overflow-wrap:anywhere}
+#page-nearby .atlas-next-meeting {
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:10px 16px;background:var(--kit-bg);border-inline-start:3px solid var(--kit-blue);
+  border-radius:3px 14px 14px 3px;padding:12px 14px
+}
+#page-nearby .atlas-meeting-when {display:grid;gap:3px;flex:1 1 170px;min-width:0}
+#page-nearby .atlas-meeting-when time {font-size:1.04rem}
+#page-nearby .atlas-next-meeting .meeting-plan-button,#hall-detail-content .hall-agenda .meeting-plan-button {
+  display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;
+  padding:8px 13px;background:var(--map-tint);color:var(--kit-blue);border:1px solid var(--kit-rule);
+  border-radius:12px;font:570 .85rem/1.3 var(--font-interface)
+}
+#page-nearby .atlas-card-actions .atlas-details-link {justify-content:space-between;width:100%;flex:1 1 auto}
+#hall-detail-content .hall-detail-address {display:flex;align-items:flex-start;gap:8px;margin:0;line-height:1.5}
+#hall-detail-content .hall-detail-address svg {flex:none;width:18px;height:18px;margin-top:2px}
+#hall-detail-content .hall-location-actions {display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-block:12px 24px}
+#hall-detail-content .hall-location-actions svg {width:18px;height:18px}
+#hall-detail-content .hall-location-actions a {display:inline-flex;align-items:center;gap:8px}
+#hall-detail-content .hall-schedule-title {margin:0 0 6px;font:600 1.15rem/1.35 var(--font-interface)}
+#hall-detail-content .hall-agenda {list-style:none;margin:0;padding:0}
+#hall-detail-content .hall-agenda-row {padding:14px 0;border-block-start:1px solid var(--kit-rule);display:grid;justify-items:start;gap:8px;text-align:start}
+#hall-detail-content .hall-agenda-info {display:grid;gap:3px;overflow-wrap:anywhere}
+#hall-detail-content .hall-agenda-info :is(time,strong) {font:600 1rem/1.4 var(--font-interface);color:var(--kit-text);font-variant-numeric:tabular-nums}
+#hall-detail-content .hall-agenda-info :is(span,small) {font:.88rem/1.5 var(--font-interface);color:var(--kit-secondary)}
+#hall-detail-content .hall-detail-footer {justify-content:start;margin-top:6px}
+body[data-page=nearby] #page-nearby {overflow:clip}
+#page-nearby .atlas-next-meeting {gap:10px;border:0;border-radius:14px;padding:12px}
+#page-nearby .hall-calendar {flex:none;display:grid;align-content:center;justify-items:center;width:46px;min-height:50px;border-radius:9px;background:var(--kit-fill);color:var(--kit-text)}
+.hall-calendar small {font:650 .63rem/1.3 var(--font-interface);text-transform:uppercase;letter-spacing:.06em}
+.hall-calendar b {font:550 1.3rem/1.15 var(--font-interface);font-variant-numeric:tabular-nums}
+#page-nearby .atlas-meeting-when {flex:1 1 110px}
+#hall-detail-content .hall-location-actions .hall-directions {width:auto;flex:0 1 auto;min-height:44px;padding:8px 15px;border-radius:12px}
+#hall-detail-content .hall-detail-footer a {flex:none;width:auto;background:transparent;padding-inline:0;text-decoration:underline;text-underline-offset:3px}
+#hall-detail-content .hall-agenda-day {list-style:none;margin:0;padding:0}
+#hall-detail-content .hall-agenda-date {margin:16px 0 2px;color:var(--kit-secondary);font:550 .8rem/1.4 var(--font-interface)}
+#hall-detail-content .hall-agenda-row {display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+#hall-detail-content .hall-agenda-info {min-width:0}
+#hall-detail-content .hall-agenda-row .meeting-plan-button {flex:none}
+#hall-detail-content .hall-detail-footer {margin-block-start:13px}
+@media(max-width:350px) {#hall-detail-content .hall-agenda-row {flex-wrap:wrap}}
+.meeting-search-header {display:none}
+@media(max-width:799px){
+  #page-nearby .atlas-controls .atlas-search,#page-nearby .atlas-controls .atlas-filters {display:none}
+  #page-nearby .meeting-search-header {display:flex;align-items:center;gap:8px;width:100%}
+  .meeting-search-header button {border:1px solid var(--kit-rule);background:var(--kit-panel);box-shadow:var(--kit-shadow);color:var(--kit-text);min-height:52px;border-radius:28px}
+  .meeting-search-destination {display:flex;align-items:center;gap:12px;text-align:start;flex:1;min-width:0;padding:6px 18px}
+  .meeting-search-destination svg {width:20px;height:20px;flex:none}
+  .meeting-search-destination span {display:grid;min-width:0;gap:2px}
+  .meeting-search-destination strong,.meeting-search-filters {font:600 .91rem/1.25 var(--font-interface)}
+  .meeting-search-destination small {font:450 .78rem/1.3 var(--font-interface);color:var(--kit-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .meeting-search-filters {padding-inline:16px}
+}
+/* The map and results share selection, search bounds and a single results count. */
+#page-nearby .atlas-drawer-scrim {display:none}
+#page-nearby .atlas-results-drawer {background:var(--kit-panel);color:var(--kit-text);padding:12px 20px 16px;gap:12px}
+#page-nearby .atlas-drawer-heading {display:flex;justify-content:space-between;align-items:center;gap:12px}
+#page-nearby .atlas-drawer-heading h2 {margin:3px 0 0;font:600 clamp(1.22rem,3vw,1.65rem)/1.2 var(--font-interface)}
+#page-nearby #atlas-drawer-region {margin:0;font:500 .8rem/1.3 var(--font-interface);color:var(--kit-secondary)}
+#page-nearby #atlas-back-map {min-height:44px;padding-inline:16px;border-radius:999px}
+#page-nearby #atlas-drawer-list {display:block;overflow-y:auto;overscroll-behavior:contain;min-height:0}
+#page-nearby .atlas-result {display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:start;border-block-start:1px solid var(--kit-rule);padding-block:5px}
+#page-nearby .atlas-result .atlas-result-link {display:grid;grid-template-columns:50px minmax(0,1fr);align-items:start;gap:12px;width:100%;padding:12px 4px;border:0;border-radius:12px;text-align:start;background:transparent;box-shadow:none;color:var(--kit-text)}
+#page-nearby .atlas-result .result-copy {display:grid;gap:4px;min-width:0;color:inherit}
+#page-nearby .atlas-result strong {font:600 1.02rem/1.32 var(--font-interface);color:inherit}
+#page-nearby .atlas-result .result-address {font:400 .84rem/1.45 var(--font-interface);color:var(--kit-secondary)}
+#page-nearby .atlas-result .result-time {font:550 .84rem/1.4 var(--font-interface);color:var(--kit-blue)}
+#page-nearby .atlas-result .result-calendar {display:grid;align-content:center;justify-items:center;gap:1px;min-height:52px;background:var(--kit-fill);color:var(--kit-text);border-radius:10px}
+#page-nearby .result-calendar small {font:600 .63rem/1.4 var(--font-reference);text-transform:uppercase;color:inherit}
+#page-nearby .result-calendar b {font:600 1.18rem/1.1 var(--font-interface)}
+#page-nearby .result-calendar svg {width:20px;height:20px}
+#page-nearby .atlas-result button.hall-save {width:44px;height:44px;margin-top:7px;padding:0;display:grid;place-items:center;border:0;border-radius:50%;background:none;box-shadow:none;color:var(--kit-blue)}
+#page-nearby .hall-price-pin span {max-width:none;font-variant-numeric:tabular-nums}
+@media(max-width:899px) {
+  #page-nearby .atlas-results-drawer {inset:auto 0 calc(80px + env(safe-area-inset-bottom));width:100%;max-width:none;height:min(65dvh,650px);max-height:calc(100dvh - 230px);border-radius:24px 24px 0 0}
+  #page-nearby.atlas-drawer-open .atlas-sheet {visibility:hidden}
+  #page-nearby:not(.atlas-has-selection) #atlas-card {display:none}
+  #page-nearby:not(.atlas-has-selection) .atlas-sheet-heading {margin:0}
+  #page-nearby:not(.atlas-has-selection) .atlas-sheet-heading>div {width:100%}
+  #page-nearby:not(.atlas-has-selection) #atlas-list {width:100%;justify-content:center;background:transparent;border:0}
+  #page-nearby:not(.atlas-has-selection) #atlas-next {display:none}
+  #page-nearby .atlas-sheet {padding:6px 16px 8px}
+}
+@media(min-width:900px) {
+  #page-nearby {--results-width:clamp(340px,38vw,550px)}
+  #page-nearby .atlas-map-layer {inset:0 0 0 var(--results-width)}
+  #page-nearby .atlas-controls {inset:16px auto auto 16px;width:calc(var(--results-width) - 32px)}
+  #page-nearby .atlas-filters {width:100%}
+  #page-nearby #atlas-status {width:auto}
+  #page-nearby .atlas-results-drawer,#page-nearby .atlas-sheet {inset:135px auto 0 0;width:var(--results-width);height:auto;max-height:none;max-width:none;border-radius:0;border:0;border-inline-end:1px solid var(--kit-rule);padding:20px 22px 95px}
+  #page-nearby .atlas-results-drawer {box-shadow:none}
+  #page-nearby .atlas-sheet {background:var(--kit-panel)}
+  #page-nearby.atlas-drawer-open .atlas-sheet {visibility:hidden}
+  #page-nearby .atlas-drawer-handle,#page-nearby #atlas-back-map,#page-nearby .atlas-drag-handle {display:none}
+  #page-nearby .atlas-result:has([aria-current=true]) .result-calendar {color:var(--kit-panel);background:var(--kit-blue)}
+  #page-nearby.atlas-drawer-open .leaflet-control-zoom {opacity:1;pointer-events:auto}
+  #page-nearby #atlas-search-area {left:calc(var(--results-width) + (100% - var(--results-width)) / 2)}
+}

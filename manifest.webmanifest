@@ -1,0 +1,10 @@
+{
+  "name": "Günlük Okuma",
+  "short_name": "Okuma",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eeeee5",
+  "theme_color": "#eeeee5",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

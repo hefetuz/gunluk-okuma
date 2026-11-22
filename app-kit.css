@@ -1,0 +1,230 @@
+/* Semantic system colors are shared by the reading views, map and app chrome. */
+:root {
+  color-scheme: light dark;
+  --kit-bg: #eeeee5;
+  --kit-panel: #fffcf3;
+  --kit-text: #202f29;
+  --kit-secondary: #505e54;
+  --kit-blue: #245e4e;
+  --kit-rule: #cbd0c2;
+  --kit-glass: rgb(251 251 239 / .86);
+  --kit-fill: #e2e8db;
+  --kit-green: #347459;
+  --kit-highlight: rgb(255 255 255 / .85);
+  --kit-shadow: 0 8px 30px rgb(32 53 39 / .12), inset 0 1px var(--kit-highlight);
+  --font-interface: 'Geist Sans', system-ui, sans-serif;
+  --font-scripture: 'Geist Serif', Georgia, serif;
+  --font-reference: 'Geist Mono', ui-monospace, monospace;
+  --sans: var(--font-interface);
+  --serif: var(--font-scripture);
+  --mono: var(--font-reference);
+  --type-display: clamp(2.5rem, 5vw, 4.5rem);
+  --type-title: clamp(1.5rem, 2.5vw, 2.125rem);
+  --type-body: 1rem;
+  --type-caption: .75rem;
+  --type-scripture: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  --action-primary: var(--kit-blue);
+  --action-on-primary: var(--kit-panel);
+  --action-secondary: var(--kit-fill);
+  --action-border: var(--kit-rule);
+  --action-ink: var(--kit-text);
+  --action-muted: var(--kit-secondary);
+  --ink: var(--kit-text);
+  --muted: var(--kit-secondary);
+  --focus: var(--kit-blue);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --kit-bg: #13201d;
+    --kit-panel: #1d2c27;
+    --kit-text: #f3f0df;
+    --kit-secondary: #b6c4b5;
+    --kit-blue: #a6d8bc;
+    --kit-rule: #46584d;
+    --kit-glass: rgb(27 42 36 / .88);
+    --kit-fill: #33473b;
+    --kit-green: #3f865e;
+    --kit-highlight: rgb(255 255 255 / .14);
+  }
+}
+html:has(body[data-page]), body[data-page], body[data-page=profile], body[data-page=today][data-reading-scene] {
+  background: var(--kit-bg);
+  color: var(--kit-text);
+}
+body[data-page=today][data-reading-scene]::before {display:none}
+body[data-page] .bar {background:transparent;color:var(--kit-text)}
+body[data-page] .bar .profile-link, body[data-page] .nav, .native-sheet {
+  background: var(--kit-glass);
+  border: 1px solid var(--kit-rule);
+  box-shadow: var(--kit-shadow);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+  backdrop-filter: blur(22px) saturate(155%);
+}
+body[data-page] .bar .profile-link {color:var(--kit-blue)}
+body[data-page] .brand img {border-radius:9px}
+body[data-page] .nav {touch-action:pan-y;user-select:none}
+body[data-page] .nav a {touch-action:pan-y;color:var(--kit-secondary)}
+body[data-page] .nav a[aria-current], body[data-page] .nav a[data-preview] {color:var(--kit-blue)}
+body[data-page] .nav > .tab-indicator {
+  background: color-mix(in srgb,var(--kit-blue) 9%,var(--kit-panel));
+  box-shadow: inset 0 1px var(--kit-highlight), 0 1px 4px rgb(20 20 40 / .10);
+}
+body[data-page] .nav[data-scrubbing] > .tab-indicator {
+  opacity:1;transition:none!important;
+}
+body[data-page] .nav[data-scrubbing] a:not([data-preview]) {color:var(--kit-secondary)}
+body[data-page] :focus-visible, .native-sheet :focus-visible {outline-color:var(--kit-blue)}
+::selection {background:color-mix(in srgb,var(--kit-blue) 22%,var(--kit-panel));color:var(--kit-text)}
+
+.native-sheet-backdrop {background:rgb(15 15 22 / .26)}
+.native-sheet {border-radius:28px 28px 0 0;color:var(--kit-text)}
+.native-sheet-handle {background:var(--kit-secondary);opacity:.55}
+.native-sheet-header h2 {font:700 clamp(23px,4vw,30px)/1.18 var(--sans);color:var(--kit-text);letter-spacing:-.035em}
+.native-sheet .native-sheet-close.ui-button {background:var(--kit-fill);border:0;color:var(--kit-secondary);font:500 23px/1 var(--sans)}
+.source-content, .source-content h3 {color:var(--kit-text);font-family:var(--sans)}
+.source-content a {color:var(--kit-blue)}
+@media(min-width:700px) {.native-sheet {border-radius:28px}}
+
+body[data-page=profile] .profile-intro, #page-saved {text-align:start}
+body[data-page=profile] .profile-intro h1, #page-saved>h1 {
+  color:var(--kit-text);font:700 clamp(34px,5vw,46px)/1.12 var(--sans);letter-spacing:-.045em;
+}
+body[data-page=profile] .profile-intro>p:last-child, body[data-page=profile] .profile-row small,
+.profile-footnote, .saved-empty-state p, .saved-card .eyebrow {color:var(--kit-secondary)}
+body[data-page=profile] .profile-group,.saved-card,.saved-empty-state {
+  background:var(--kit-panel);color:var(--kit-text);border:1px solid var(--kit-rule);
+  border-radius:22px;
+}
+body[data-page=profile] .profile-group h2 {
+  color:var(--kit-secondary);font:600 13px/1.35 var(--sans);letter-spacing:0;text-transform:none;
+}
+.profile-row,.profile-row select {color:var(--kit-text);background:transparent}
+.profile-row+.profile-row {border-color:var(--kit-rule)}
+body[data-page=profile] .profile-row select {color-scheme:inherit;color:var(--kit-blue);border:0}
+.profile-row:is(a,button)>span:last-child {font-size:24px;line-height:1;color:var(--kit-secondary)}
+.size-segments {background:var(--kit-fill);box-shadow:none}
+.size-segments::before {background:var(--kit-panel);box-shadow:var(--kit-shadow)}
+.size-segments span,.size-segments input:checked+span {color:var(--kit-text)}
+.size-segments label:has(:focus-visible) {outline-color:var(--kit-blue)}
+.profile-row input[type=checkbox] {
+  width:63px;height:28px;min-height:28px;border:0;background:color-mix(in srgb,var(--kit-secondary) 32%,var(--kit-panel));box-shadow:inset 0 0 0 1px var(--kit-rule);
+}
+.profile-row input[type=checkbox]::before {
+  width:36px;height:24px;left:2px;top:2px;border-radius:20px;background:white;box-shadow:0 1px 4px #0003;
+}
+.profile-row input[type=checkbox]:checked {background:var(--kit-green);box-shadow:none}
+.profile-row input[type=checkbox]:checked::before {left:2px;transform:translateX(23px);background:white}
+.saved-card h2,.saved-empty-state h2 {font:650 23px/1.2 var(--sans);color:var(--kit-text)}
+.saved-empty-state svg,.saved-card>a,.saved-card button,.saved-empty-state a {color:var(--kit-blue)}
+.saved-card>p:not(.eyebrow) {color:var(--kit-text);font:400 19px/1.55 var(--sans)}
+@media(hover:hover) {.profile-row:is(a,button):hover {background:var(--kit-fill)}}
+@media(prefers-reduced-motion:no-preference) {
+  html:not([data-motion=reduce]) .profile-row input[type=checkbox] {transition:background-color 150ms ease}
+  html:not([data-motion=reduce]) .profile-row input[type=checkbox]::before {transition:transform 200ms var(--control-ease)}
+  html:not([data-motion=reduce]) .nav a:active .nav-icon {transform:scale(.93)}
+  html:not([data-motion=reduce]) .nav-icon {transition:transform 140ms var(--control-ease)}
+  html:not([data-motion=reduce]) :is(#page-profile,#page-saved):not([hidden]) {
+    animation:kit-enter 220ms var(--control-ease);
+  }
+  @keyframes kit-enter {from {opacity:0;translate:0 6px} to {opacity:1;translate:0 0}}
+}
+@media(prefers-reduced-transparency:reduce) {
+  :root {--kit-glass:var(--kit-panel)}
+  body[data-page] .nav,.native-sheet {backdrop-filter:none}
+}
+
+body[data-page] .nav {grid-template-columns:repeat(4,minmax(0,1fr))!important}
+body[data-page] .nav > .tab-indicator {width:calc((100% - 21px) / 4)}
+body:is([data-page=profile],[data-page=saved]) .nav > .tab-indicator {transform:translateX(calc(300% + 9px));opacity:1}
+body:is([data-page=profile],[data-page=saved]) .bar .profile-link {display:none}
+body[data-page=profile] .profile-intro {padding:18px 0}
+.profile-group-label {margin:8px 16px;color:var(--kit-secondary);font:600 14px/1.4 var(--sans)}
+body[data-page=profile] .profile-row {display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:12px}
+.profile-row .setting-icon {width:22px;height:22px;color:var(--kit-blue);fill:none;stroke:currentColor;stroke-width:1.65}
+.profile-row .size-segments {width:210px}
+@media(max-width:560px) {
+  .profile-row .size-segments {grid-column:2/-1;width:100%}
+}
+body[data-page=today] #daily-retry.ui-button {background:var(--kit-fill);color:var(--kit-blue);border:0}
+@media(forced-colors:active) {
+  .profile-row input[type=checkbox] {appearance:auto;accent-color:Highlight}
+  .profile-row input[type=checkbox]::before {display:none}
+}
+body[data-page] .nav[data-keyboard] > .tab-indicator {transition:none!important}
+
+/* The landscape is also the bounded, local texture sampled by the glass renderer. */
+#glass-landscape {
+  position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  background:linear-gradient(138deg,#f8f3e5 12%,#edf0e4 55%,#ceddcd);
+}
+#glass-landscape img {width:100%;height:100%;object-fit:cover;object-position:center 55%;opacity:.16}
+body[data-page] {isolation:isolate;font-family:var(--font-interface)}
+body[data-page] .shell {background:transparent}
+body[data-page] .nav {
+  border-radius:32px;
+  border-color:color-mix(in srgb,var(--kit-highlight) 70%,var(--kit-rule));
+  box-shadow:inset 0 1px var(--kit-highlight),0 3px 9px #23372712,0 14px 38px #1b39271f;
+}
+body[data-page] .nav > .tab-indicator {
+  border-radius:25px;
+  background:color-mix(in srgb,var(--kit-blue) 13%,var(--kit-panel));
+  box-shadow:inset 0 1px var(--kit-highlight),0 1px 3px #273e291a;
+}
+body[data-page] .nav a {font-family:var(--font-interface);font-weight:530}
+body[data-page] .nav a[aria-current] {font-weight:650}
+.native-sheet {border-color:var(--kit-rule);box-shadow:var(--kit-shadow)}
+.native-sheet .native-sheet-header h2,.source-content h3 {font-family:var(--font-interface);letter-spacing:-.035em}
+.source-content {line-height:1.65;max-inline-size:65ch}
+body[data-page=profile] #page-profile,body[data-page=saved] #page-saved {
+  width:min(100%,62rem);max-width:none;margin:clamp(12px,4vh,40px) auto 40px;
+}
+body[data-page=profile] .profile-intro {padding:0;position:relative;margin-bottom:24px}
+body[data-page=profile] .profile-intro h1,#page-saved>h1 {
+  margin:0 0 20px;font:530 var(--type-display)/1.03 var(--font-interface);letter-spacing:-.055em;
+}
+.profile-landscape {
+  height:clamp(94px,16vh,170px);border-radius:6px 24px 6px 6px;
+  background:linear-gradient(0deg,#163d3340,transparent 80%),url('ui-dist/gather.webp') center 54%/cover;
+}
+.profile-settings {min-width:0}
+body[data-page=profile] .profile-group-label {
+  margin:0 0 12px;color:var(--kit-secondary);font:500 var(--type-caption)/1.45 var(--font-reference);
+}
+body[data-page=profile] .profile-group {border-radius:20px;background:var(--kit-panel);border:1px solid var(--kit-rule)}
+body[data-page=profile] .profile-row {min-height:64px;font:500 var(--type-body)/1.45 var(--font-interface)}
+body[data-page=profile] .profile-row small {font:400 var(--type-caption)/1.5 var(--font-interface)}
+.profile-footnote {text-align:start;font:400 var(--type-caption)/1.5 var(--font-interface)}
+body[data-page=saved] .saved-card,body[data-page=saved] .saved-empty-state {
+  border-radius:5px 20px 20px 5px;border-inline-start:3px solid var(--kit-blue);padding:clamp(20px,4vw,38px);
+}
+.saved-card .eyebrow {
+  font:500 var(--type-caption)/1.5 var(--font-reference);letter-spacing:.015em;text-transform:none;
+}
+.saved-scripture>p:not(.eyebrow) {font:400 var(--type-scripture)/1.55 var(--font-scripture);max-width:66ch}
+html[data-reader-size=small] {--type-scripture:clamp(1.125rem,1.05rem + .45vw,1.375rem)}
+html[data-reader-size=large] {--type-scripture:clamp(1.625rem,1.3rem + 1.3vw,2.125rem)}
+@media(min-width:800px) {
+  body[data-page=profile] #page-profile:not([hidden]) {display:grid;grid-template-columns:minmax(0, .72fr) minmax(0,1.28fr);gap:clamp(35px,6vw,90px);align-items:start}
+  .profile-landscape {height:clamp(215px,38vh,375px)}
+  body[data-page=profile] .profile-intro h1 {margin-bottom:32px}
+  body[data-page=saved] #page-saved:not([hidden]) {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  #page-saved>h1,#page-saved>.saved-empty-state {grid-column:1/-1}
+  #page-saved>.saved-card {margin:0}
+}
+@media(prefers-color-scheme:dark) {
+  #glass-landscape {background:linear-gradient(130deg,#0e1a17,#1c3029 58%,#233b32)}
+  #glass-landscape img {opacity:.11}
+}
+@media(prefers-reduced-transparency:reduce), (forced-colors:active) {
+  #glass-landscape img {display:none}
+  body[data-page] .nav,.native-sheet {background:var(--kit-panel);backdrop-filter:none}
+}
+body[data-page] .nav[data-liquid-ready] {
+  background:color-mix(in srgb,var(--kit-panel) 18%,transparent);
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+body[data-page] .nav a:not([aria-current]):not([data-preview]) {color:var(--kit-text)}
+body[data-page] .nav a > span:last-child {white-space:nowrap;text-align:center;line-height:1.2}
+@media(max-width:370px) {
+  body[data-page] .nav a {font-size:.625rem}
+}

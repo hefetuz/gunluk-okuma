@@ -1,0 +1,326 @@
+/* Shared action hierarchy. Reading content never inherits control styling. */
+:root{
+ --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;--space-12:48px;
+ --control-height:44px;--control-height-large:48px;--control-radius:22px;--surface-radius:24px;
+ --action-primary:#d8eaf4;--action-on-primary:#12334b;--action-secondary:#dcefff0d;--action-border:#dcefff40;--action-ink:#e8f1f7;--action-muted:#b8ccdb;
+ --label-size:13px;--icon-size:18px;--press-duration:150ms;--control-ease:cubic-bezier(.23,1,.32,1);
+ --tabbar-height:66px;--tabbar-max-width:480px;--tabbar-edge:20px;
+}
+/* The viewport, rather than the scrollable document, owns the tab bar geometry. */
+body[data-page] .nav{
+ position:fixed;inset:auto auto max(18px,env(safe-area-inset-bottom)) 50vw;
+ transform:translateX(-50%);width:min(calc(100vw - 2 * var(--tabbar-edge) - env(safe-area-inset-left) - env(safe-area-inset-right)),var(--tabbar-max-width));
+ max-width:none;max-inline-size:none;height:var(--tabbar-height);margin:0;padding:6px;
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:3px;
+}
+body[data-page] .nav a{height:52px;min-height:52px;padding:4px;gap:5px;font:550 10px/1.2 var(--sans)}
+body[data-page] .nav a[aria-current]{font-weight:700}
+:is(#page-today,#page-bible,#page-nearby,#page-profile,#page-saved,.native-sheet,.atlas-search-dialog,.system-preview) .ui-button{
+ display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-height:var(--control-height);padding:10px var(--space-4);border:1px solid transparent;border-radius:var(--control-radius);background:none;color:var(--action-ink);font:500 var(--label-size)/1.3 var(--sans);letter-spacing:0;text-decoration:none;text-align:center;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;touch-action:manipulation;user-select:none;-webkit-user-select:none;cursor:pointer;
+}
+:is(#page-today,#page-bible,#page-nearby,#page-profile,#page-saved,.native-sheet,.atlas-search-dialog,.system-preview) .ui-button[data-variant=primary]{background:var(--action-primary);color:var(--action-on-primary);border-color:var(--action-primary);font-weight:600}
+:is(#page-today,#page-bible,#page-nearby,#page-profile,#page-saved,.native-sheet,.atlas-search-dialog,.system-preview) .ui-button[data-variant=secondary]{background:var(--action-secondary);border-color:var(--action-border)}
+:is(#page-today,#page-bible,#page-nearby,#page-profile,#page-saved,.native-sheet,.atlas-search-dialog,.system-preview) .ui-button[data-variant=tertiary]{background:transparent;border-color:transparent;color:var(--action-muted)}
+:is(#page-today,#page-bible,#page-nearby,#page-profile,#page-saved,.native-sheet,.atlas-search-dialog,.system-preview) .ui-button[data-icon-only]{width:var(--control-height);height:var(--control-height);padding:0;flex:none;font-size:24px}
+:is(#page-today,#page-bible,#page-nearby,#page-profile,#page-saved,.native-sheet,.atlas-search-dialog,.system-preview) .ui-button[data-size=large]{min-height:var(--control-height-large);padding-inline:20px;border-radius:24px}
+.ui-button svg{width:var(--icon-size);height:var(--icon-size);flex:none}
+.ui-button:focus-visible{outline:2px solid #efd79b;outline-offset:3px}
+.ui-button:disabled,.ui-button[aria-disabled=true]{opacity:.4;cursor:default;transform:none!important}
+.ui-button[aria-pressed=true]{color:#f2dcaa!important;background:#e9d9ac0d!important}
+@media(hover:hover) and (pointer:fine){.ui-button:not(:disabled):hover{filter:brightness(1.12)}}
+@media(prefers-reduced-motion:no-preference){.ui-button{transition:transform var(--press-duration) var(--control-ease),background-color 120ms ease-out}.ui-button:not(:disabled):not([aria-disabled=true]):active{transform:scale(.96)}}
+html[data-motion=reduce] .ui-button{transition:none;transform:none!important}
+body[data-page=today] #verse-chapter{margin:24px 0 0 20px;font-size:var(--label-size)}
+body[data-page=today] .cennet-verse-controls{justify-content:flex-start;margin:12px 0 0 10px;gap:var(--space-1)}
+body[data-page=today] .cennet-verse-controls .ui-button{min-height:44px;padding:10px 14px}
+body[data-page=today] .cennet-verse-controls [data-icon-only]{padding:0;width:44px}
+body[data-page=today] .verse-notice{margin:0 0 0 20px;min-height:18px;font-size:12px;line-height:1.5}
+.verse-swipe-hint{margin:24px 0 0 20px;color:#a6bfd1;font:11px/1.5 var(--sans)}
+.cennet-reading>article:focus-visible{outline:2px solid #efd79b;outline-offset:8px;border-radius:4px}
+.topic-settings{grid-column:1/-1;margin-top:8px}
+.native-sheet .verse-topic-options button{min-height:76px;padding:14px;border-radius:18px;text-align:left}
+.native-sheet .verse-topic-options strong{font-size:20px}
+.bible-reading-toolbar .bible-library-button,.bible-reading-toolbar .bible-translation-button{min-height:44px;height:44px;border:0;box-shadow:none;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--action-muted)}
+.bible-reading-toolbar .bible-library-button{width:44px}
+.bible-reading-toolbar .bible-translation-button{font-size:11px}
+.bible-reading-toolbar .bible-title-button{font-size:13px}
+.bible-action-grid{gap:8px;flex-wrap:wrap}
+.bible-action-grid .ui-button{display:inline-flex;min-width:0;min-height:44px;height:auto;gap:8px;border-radius:22px}
+.atlas-filters button{min-height:44px;font:500 12px var(--sans);background:#102e4866;border:1px solid #dcefff20;box-shadow:none}
+.atlas-filters button[aria-pressed=true]{background:#dcefff24;border-color:#dcefff70;color:#eef5fa;box-shadow:none}
+.atlas-filters #atlas-language{background:#102e4866;border-color:#dcefff20;font-weight:500}
+.atlas-filters #atlas-language[aria-pressed=true]{background:#dcefff24;border-color:#dcefff70}
+.atlas-search-footer #atlas-confirm-search{min-height:48px;border-radius:24px;padding-inline:24px;font-size:13px}
+@media(max-width:370px){body[data-page=today] #verse-chapter{margin-left:16px}.verse-swipe-hint{margin-left:16px}.bible-reading-toolbar .bible-title-button{font-size:11px}}
+@media(forced-colors:active){.ui-button{border:1px solid ButtonText!important}.ui-button:focus-visible{outline-color:Highlight}}
+
+/* Daily reading: Geniş. The verse is the only visual focal point. */
+body[data-page=today][data-reading-scene]{background:radial-gradient(ellipse at 95% 100%,#28445b30,transparent 70%),#0a233b}
+body[data-page=today][data-reading-scene=sea]{background:radial-gradient(ellipse at 90% 100%,#34595d35,transparent 70%),#0a253a}
+body[data-page=today][data-reading-scene=mountains]{background:radial-gradient(ellipse at 85% 100%,#35536730,transparent 70%),#0b253d}
+body[data-page=today][data-reading-scene=dusk]{background:radial-gradient(ellipse at 90% 100%,#4e435d35,transparent 70%),#101f36}
+body[data-page=today] .shell{width:min(100%,620px);min-height:100dvh;padding:0 28px}
+body[data-page=today] #main{flex:1;align-items:stretch}
+body[data-page=today] #page-today{position:relative;display:flex;align-items:center;width:100%;max-width:570px;min-height:100dvh;margin:auto;padding:90px 0 calc(150px + env(safe-area-inset-bottom))!important;text-align:left}
+body[data-page=today] .cennet-reading{width:100%}
+body[data-page=today] .reading-topic{position:absolute;top:max(82px,calc(48px + env(safe-area-inset-top)));left:0;margin:0;font:400 12px var(--sans);letter-spacing:0}
+body[data-page=today] #verse-topic{display:inline-flex;gap:7px;align-items:center;min-height:44px;padding:10px 0;border:0;background:none;box-shadow:none;color:#9fb9cb;font:400 12px var(--sans);letter-spacing:0;backdrop-filter:none}
+body[data-page=today] #verse-topic svg{width:12px;height:12px;color:#8eabbe}
+body[data-page=today] .cennet-reading>article{width:100%;min-height:0;padding:0;border:0;border-radius:4px;cursor:default}
+body[data-page=today] .cennet-reading>article:active{cursor:default}
+body[data-page=today] #daily-verse-text{max-width:570px;margin:0;font:400 clamp(38px,9.5vw,49px)/1.28 var(--serif);letter-spacing:-.025em;color:#fff9ef;text-wrap:wrap;white-space:normal;text-shadow:0 2px 14px #04132350}
+body[data-page=today] #daily-verse-ref{margin:30px 0 0;color:#9cb7ca;font:400 10px/1.6 var(--mono);letter-spacing:.03em}
+body[data-page=today] #page-today[data-daily-state=loading] #daily-verse-text,body[data-page=today] #page-today[data-daily-state=error] #daily-verse-text{font-size:clamp(27px,6vw,34px);line-height:1.4}
+body[data-page=today] #daily-retry{margin-top:24px}
+body[data-page=today] #daily-retry[hidden]{display:none}
+body[data-page=today] #verse-more{position:absolute;right:0;bottom:calc(106px + env(safe-area-inset-bottom));display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:none;color:#a1bccd;font:500 22px var(--sans);letter-spacing:2px;cursor:pointer}
+body[data-page=today] #verse-more:focus-visible{outline:2px solid #eed7a2;outline-offset:3px}
+body[data-page=today] .verse-swipe-hint{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+body[data-page=today] .verse-notice{position:absolute;bottom:calc(160px + env(safe-area-inset-bottom));left:0;margin:0;min-height:0;font:12px/1.5 var(--sans);color:#d8e8f3}
+body[data-page=today] .verse-notice:empty{display:none}
+.verse-menu-items{display:none}
+.native-sheet .verse-menu-items{display:block;padding-bottom:4px}
+.native-sheet .verse-menu-items>a,.native-sheet .verse-menu-items>button{display:flex;align-items:center;gap:14px;width:100%;min-height:52px;padding:12px 2px;border:0;border-top:1px solid #dcefff16;border-radius:0;background:none;color:#e5eff5;text-align:left;font:400 14px var(--sans);text-decoration:none;box-shadow:none}
+.native-sheet .verse-menu-items>:first-child{border-top:0}
+.native-sheet .verse-menu-items svg{width:18px;height:18px;color:#a8c3d5}
+.native-sheet .verse-menu-items #verse-save[aria-pressed=true]{color:#ead9af}
+.native-sheet .verse-menu-items #verse-chapter{margin:0;min-height:52px;padding:12px 2px;font-size:14px}
+.native-sheet .verse-menu-items [hidden]{display:none}
+.native-sheet .verse-menu-items #verse-source{min-height:44px;color:#a6bfce;font-size:11px}
+html[data-reader-size=small] body[data-page=today] #daily-verse-text{font-size:clamp(32px,8vw,40px)}
+html[data-reader-size=large] body[data-page=today] #daily-verse-text{font-size:clamp(42px,10vw,54px)}
+@media(max-height:740px){body[data-page=today] #page-today{padding-top:105px!important}body[data-page=today] .reading-topic{top:65px}}
+@media(max-width:370px){body[data-page=today] .shell{padding-inline:24px}body[data-page=today] #daily-verse-text{font-size:37px}}
+
+/* Keep the chosen landscape visible, with a quiet field behind the passage. */
+body[data-page=today][data-reading-scene] {
+  position:relative;
+  isolation:isolate;
+  background:#0b2233;
+}
+body[data-page=today][data-reading-scene]::before {
+  content:"";
+  display:block;
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:1;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,#081e30ed 8%,#0a2338c7 45%,#102a3d40 88%),
+    linear-gradient(0deg,#071b2bce,transparent 60%),
+    var(--reading-scene) center 46% / cover no-repeat;
+}
+.reading-date {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#eedbb7;
+  font:550 12px/1.6 var(--sans);
+  margin-bottom:24px;
+}
+.reading-date::before {
+  content:"";
+  width:32px;
+  height:1px;
+  background:currentColor;
+}
+.reading-date[hidden] {display:none}
+body[data-page=today] #verse-topic,
+body[data-page=today] #verse-more {
+  color:#f2ecdf;
+  background:#102738bc;
+  border:1px solid #e6e9e537;
+  border-radius:24px;
+}
+body[data-page=today] #verse-topic {padding:0 16px}
+body[data-page=today] #daily-verse-ref {color:#d4dfdf;font-size:12px;line-height:1.65}
+body[data-page=today] #daily-verse-text {text-wrap:pretty}
+body[data-page] .nav {
+  background:#112b3eea;
+  border:1px solid #b1ccdb4d;
+  box-shadow:0 10px 32px #02101b54;
+}
+body[data-page] .nav a[aria-current] {background:#d8e5e316;color:#fff0ce;border-radius:30px}
+body[data-page=bible] .bible-verse sup {color:#dfc99e}
+body[data-page=bible] .bible-reading-page h1 {text-wrap:balance}
+body[data-page=bible] .bible-flourish {opacity:.85;color:#e2c494}
+body[data-page=nearby] .atlas-place-switch button[aria-pressed=true] {color:#123044}
+body[data-page=nearby] .atlas-sheet {background:#102a40f5;border:1px solid #c0d8e043;box-shadow:0 10px 36px #03182757}
+body[data-page=nearby] .atlas-address {color:#ccdae4;font-size:12px}
+body[data-page=nearby] .atlas-next-meeting strong {color:#f3ddae;font-size:12px}
+@media(min-width:800px) {
+  body[data-page=today] .shell {width:min(1100px,90%);padding-inline:0}
+  body[data-page=today] #page-today {max-width:none}
+  body[data-page=today] .cennet-reading {max-width:min(66vw,710px)}
+  body[data-page=today] #daily-verse-text {max-width:100%;font-size:clamp(44px,4.5vw,62px);line-height:1.2}
+  body[data-page=today] .reading-topic {top:clamp(46px,9vh,85px)}
+  body[data-page=today] #verse-more {left:0;right:auto}
+}
+@media(max-width:799px) {
+  body[data-page=today][data-reading-scene]::before {
+    background:
+      linear-gradient(0deg,#071b2bec 4%,#0a223bd9 35%,#112c43af 68%,#132f4833),
+      var(--reading-scene) 57% center / cover no-repeat;
+  }
+}
+@media(max-height:650px) {
+  body[data-page=today] #page-today {padding-top:110px!important}
+  body[data-page=today] .reading-topic {top:30px}
+  .reading-date {margin-bottom:16px}
+}
+
+:root {
+  --reading-paper:#fbf5e8;
+  --reading-caption:#c2d4df;
+  --reading-accent:#eedbb7;
+  --reading-panel:#102a40;
+}
+::selection {background:#e2d1a9;color:#123044}
+.reading-date,.bible-overline,.atlas-next-meeting strong {font-variant-numeric:tabular-nums}
+body[data-page=today] #verse-more {
+  inset:auto;
+  inset-inline-end:0;
+  inset-block-start:max(82px,calc(48px + env(safe-area-inset-top)));
+}
+body[data-page=today] #daily-verse-text {color:var(--reading-paper);line-height:1.34}
+body[data-page=today] #daily-verse-ref {color:var(--reading-caption)}
+body[data-page=today] #page-today {padding-bottom:calc(110px + env(safe-area-inset-bottom))!important}
+body[data-page] .nav a {font-size:.6875rem;line-height:1.2;letter-spacing:0}
+body[data-page=bible] .bible-reading-page {max-inline-size:68ch;margin-inline:auto}
+body[data-page=bible] .bible-reader-text {text-wrap:pretty}
+body[data-page=bible] .bible-flourish {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--space-3);
+  margin-block:var(--space-4) var(--space-6);
+}
+.bible-flourish::before,.bible-flourish::after {
+  content:"";inline-size:2rem;block-size:1px;background:currentColor;opacity:.5;
+}
+body[data-page=bible] .bible-verse {scroll-margin-block-start:5rem}
+body[data-page=profile] {
+  background:linear-gradient(135deg,#0b2033ee,#112e48d4 55%,#18354bb8),
+    url("ui-dist/gather.webp") center 64% / cover fixed;
+}
+body[data-page=profile] .profile-intro {
+  text-align:start;
+  padding-block:clamp(1.5rem,6vh,4rem) var(--space-6);
+}
+body[data-page=profile] .profile-avatar {display:none}
+body[data-page=profile] .profile-intro .eyebrow {
+  display:flex;align-items:center;justify-content:flex-start;gap:var(--space-3);
+  margin:0;color:var(--reading-accent);font:550 .75rem/1.6 var(--sans);
+}
+body[data-page=profile] .profile-intro .eyebrow::before {
+  content:"";width:2rem;height:1px;background:currentColor;
+}
+body[data-page=profile] .profile-intro h1 {
+  color:var(--reading-paper);
+  font:400 clamp(2.5rem,7vw,4rem)/1.14 var(--serif);
+  letter-spacing:-.025em;
+  margin-block:var(--space-3) var(--space-2);
+}
+body[data-page=profile] .profile-intro>p:last-child,
+body[data-page=profile] .profile-row small {color:var(--reading-caption);line-height:1.55}
+body[data-page=profile] .profile-group {background:var(--reading-panel);margin-block-end:var(--space-4)}
+body[data-page=profile] .profile-group h2 {color:var(--reading-accent)}
+body[data-page=profile] .profile-row {text-align:start;min-height:68px;padding:16px 20px}
+body[data-page=profile] .profile-row small {font-size:.75rem}
+body[data-page=profile] .profile-row select {color-scheme:dark;min-height:44px}
+body[data-page=nearby] .atlas-sheet-heading .eyebrow {font-size:.75rem;color:var(--reading-caption)}
+body[data-page=nearby] .atlas-filters {scroll-padding-inline:var(--space-2)}
+.atlas-search-dialog,.atlas-results-drawer,.native-sheet,.bible-picker {overscroll-behavior:contain}
+@media(min-width:800px) {
+  body[data-page=today] #verse-more {inset-block-start:clamp(46px,9vh,85px)}
+  body[data-page=today] #page-today {padding-top:calc(clamp(46px,9vh,85px) + 72px)!important}
+  body[data-page=today] .cennet-reading {max-width:min(72vw,820px)}
+  body[data-page=today] #daily-verse-text {font-size:clamp(2.75rem,4vw,3.6rem)}
+}
+@media(max-width:799px) {
+  body[data-page=nearby] .atlas-search input,.atlas-search-dialog input {font-size:1rem}
+  body[data-page=today] #page-today {
+    padding-top:calc(max(82px,48px + env(safe-area-inset-top)) + 68px)!important;
+    align-items:center;
+  }
+  body[data-page=today] #daily-verse-text {
+    font-size:clamp(1.875rem,8.25vw,2.5rem);
+    line-height:1.4;
+  }
+  html[data-reader-size=small] body[data-page=today] #daily-verse-text {font-size:clamp(1.625rem,7vw,2.125rem)}
+  html[data-reader-size=large] body[data-page=today] #daily-verse-text {font-size:clamp(2.2rem,10vw,3rem)}
+}
+@media(max-height:740px) and (min-height:651px) and (max-width:799px) {
+  body[data-page=today] #verse-more {inset-block-start:65px}
+}
+@media(max-height:650px) {
+  body[data-page=today] #verse-more {inset-block-start:30px}
+}
+
+/* UIKit Gallery tab bar and segmented control, adapted for native browser inputs. */
+.nav, .size-segments {
+  --selection-fill: linear-gradient(155deg, #ebf6ff29, #e6f1fa10 64%);
+  --selection-edge: inset 0 1px 1px #f7fcff52, inset 0 0 0 1px #dcecf51e, 0 2px 5px #05132233;
+}
+body[data-page] .nav > .tab-indicator {
+  content: "";
+  position: absolute;
+  inset: 6px auto auto 6px;
+  width: calc((100% - 18px) / 3);
+  height: 52px;
+  border-radius: 30px;
+  background: var(--selection-fill);
+  box-shadow: var(--selection-edge);
+  pointer-events: none;
+  opacity: 0;
+}
+body:is([data-page=today], [data-page=bible], [data-page=nearby]) .nav > .tab-indicator {opacity: 1}
+body[data-page=bible] .nav > .tab-indicator {transform: translateX(calc(100% + 3px))}
+body[data-page=nearby] .nav > .tab-indicator {transform: translateX(calc(200% + 6px))}
+body[data-page] .nav a {position: relative}
+body[data-page] .nav a[aria-current] {background: transparent; box-shadow: none}
+
+.profile-row.size-row {flex-wrap: wrap}
+.size-segments {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  isolation: isolate;
+  padding: 3px;
+  max-width: 100%;
+  width: 230px;
+  background: #061b2d80;
+  border-radius: 15px;
+  box-shadow: inset 0 0 0 1px #dcecf51e;
+}
+.size-segments::before {
+  content: "";
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: calc((100% - 6px) / 3);
+  border-radius: 12px;
+  background: var(--selection-fill);
+  box-shadow: var(--selection-edge);
+  pointer-events: none;
+}
+.size-segments:has([value=standard]:checked)::before {transform: translateX(100%)}
+.size-segments:has([value=large]:checked)::before {transform: translateX(200%)}
+.size-segments label {position: relative; display: grid; place-items: center; min-height: 44px}
+.size-segments input {position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; margin: 0}
+.size-segments span {color: #c4d4de; font: 500 13px/1.25 var(--sans); pointer-events: none}
+.size-segments input:checked + span {color: #fff2d9; font-weight: 700}
+.size-segments label:has(:focus-visible) {outline: 2px solid #fff2d9; outline-offset: -2px; border-radius: 12px}
+@media (max-width: 450px) {
+  .size-segments {width: 100%}
+  .profile-row.size-row {gap: 8px}
+}
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-motion=reduce]) body[data-page] .nav > .tab-indicator,
+  html:not([data-motion=reduce]) .size-segments::before {
+    transition: transform 260ms cubic-bezier(.22, .85, .26, 1), opacity 140ms ease;
+  }
+}
+@media (forced-colors: active) {
+  body[data-page] .nav a[aria-current], .size-segments label:has(:checked) {outline: 2px solid Highlight; outline-offset: -3px}
+}
