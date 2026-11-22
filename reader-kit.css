@@ -134,3 +134,6 @@ body[data-page=today] .daily-actions > :is(button,a) {
 }
 body[data-page=today] .daily-actions #verse-save[aria-pressed=true] {color:var(--kit-blue);background:var(--kit-panel)}
 .daily-actions svg {width:17px;height:17px;flex:none}
+/* Match navigation and heading edges to the reading column. */
+body[data-page=bible] :is(.bible-reading-toolbar,.bible-reading-page,.bible-license) {width:100%;max-inline-size:100%}
+body[data-page=bible] .bible-chapter-heading .bible-translation-button {padding-inline:0}

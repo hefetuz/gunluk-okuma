@@ -228,3 +228,6 @@ body[data-page] .nav a > span:last-child {white-space:nowrap;text-align:center;l
 @media(max-width:370px) {
   body[data-page] .nav a {font-size:.625rem}
 }
+
+/* These pages already expose profile navigation in the bottom bar. */
+body:is([data-page=nearby],[data-page=profile]) .bar {display:none}

@@ -262,3 +262,8 @@ body[data-page=nearby] .bar .brand {display:none}
 @media(min-width:900px) {
   #page-nearby {background:var(--kit-panel)}
 }
+
+#page-nearby .result-calendar small {font-size:.7rem;opacity:1}
+#page-nearby .result-calendar b {font-size:1.25rem;opacity:1}
+#page-nearby .atlas-result:has([aria-current=true]) .result-calendar,
+#page-nearby .atlas-result:has([aria-current=true]) .result-calendar :is(small,b) {color:var(--kit-bg)}
