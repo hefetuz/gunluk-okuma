@@ -256,3 +256,9 @@ body[data-page=nearby] #page-nearby {overflow:clip}
   #page-nearby.atlas-drawer-open .leaflet-control-zoom {opacity:1;pointer-events:auto}
   #page-nearby #atlas-search-area {left:calc(var(--results-width) + (100% - var(--results-width)) / 2)}
 }
+
+/* Keep the meeting sidebar continuous and clear the search field. */
+body[data-page=nearby] .bar .brand {display:none}
+@media(min-width:900px) {
+  #page-nearby {background:var(--kit-panel)}
+}
