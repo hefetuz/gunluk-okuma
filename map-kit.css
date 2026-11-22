@@ -267,3 +267,7 @@ body[data-page=nearby] .bar .brand {display:none}
 #page-nearby .result-calendar b {font-size:1.25rem;opacity:1}
 #page-nearby .atlas-result:has([aria-current=true]) .result-calendar,
 #page-nearby .atlas-result:has([aria-current=true]) .result-calendar :is(small,b) {color:var(--kit-bg)}
+
+#page-nearby #atlas-drawer-list .result-calendar {color:var(--kit-text)}
+#page-nearby #atlas-drawer-list .result-calendar :is(small,b) {color:inherit}
+#page-nearby #atlas-drawer-list .atlas-result:has([aria-current=true]) .result-calendar {color:var(--kit-bg)}
