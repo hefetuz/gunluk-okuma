@@ -271,3 +271,11 @@ body[data-page=nearby] .bar .brand {display:none}
 #page-nearby #atlas-drawer-list .result-calendar {color:var(--kit-text)}
 #page-nearby #atlas-drawer-list .result-calendar :is(small,b) {color:inherit}
 #page-nearby #atlas-drawer-list .atlas-result:has([aria-current=true]) .result-calendar {color:var(--kit-bg)}
+
+/* One card surface contains both selection and its independent save action. */
+#page-nearby #atlas-drawer-list .atlas-result {grid-template-columns:minmax(0,1fr) 44px;gap:8px;padding:16px;margin-block:8px;border:0;border-radius:16px}
+#page-nearby #atlas-drawer-list .atlas-result:has(.atlas-result-link[aria-current=true]) {background:var(--map-tint)}
+#page-nearby #atlas-drawer-list .atlas-result .atlas-result-link {padding:0;min-height:52px;height:auto;border-radius:0;background:transparent}
+#page-nearby #atlas-drawer-list .atlas-result .hall-save {align-self:start;justify-self:end;margin:4px 0 0;width:44px;height:44px;min-height:44px;padding:0;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--kit-blue)}
+#page-nearby #atlas-drawer-list .hall-save svg {display:block;width:20px;height:20px;margin:0}
+#page-nearby #atlas-drawer-list .hall-save[aria-pressed=true] {background:color-mix(in srgb,var(--kit-blue) 10%,transparent)}
