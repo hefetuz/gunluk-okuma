@@ -279,3 +279,5 @@ body[data-page=nearby] .bar .brand {display:none}
 #page-nearby #atlas-drawer-list .atlas-result .hall-save {align-self:start;justify-self:end;margin:4px 0 0;width:44px;height:44px;min-height:44px;padding:0;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:var(--kit-blue)}
 #page-nearby #atlas-drawer-list .hall-save svg {display:block;width:20px;height:20px;margin:0}
 #page-nearby #atlas-drawer-list .hall-save[aria-pressed=true] {background:transparent!important}
+
+@media(max-width:899px){body[data-page=nearby]:has(#page-nearby.atlas-drawer-open) .nav{display:none}#page-nearby .atlas-results-drawer{bottom:0;height:min(calc(65dvh + 80px),730px);max-height:calc(100dvh - 150px);padding-bottom:max(16px,env(safe-area-inset-bottom))}}

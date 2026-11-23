@@ -8,3 +8,5 @@ body[data-page=nearby] .nav>.liquid-gl-surface{display:none!important}
 
 body[data-page] .nav,body[data-page] .nav[data-liquid-ready]{background:var(--kit-panel);backdrop-filter:none;-webkit-backdrop-filter:none;overflow:hidden}
 body[data-page] .nav>.liquid-gl-surface{display:none!important}
+
+@media(max-width:899px){body[data-page=nearby]:has(#page-nearby.atlas-drawer-open) .nav{display:none}#page-nearby .atlas-results-drawer{bottom:0;height:min(calc(65dvh + 80px),730px);max-height:calc(100dvh - 150px);padding-bottom:max(16px,env(safe-area-inset-bottom))}}
