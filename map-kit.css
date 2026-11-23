@@ -285,3 +285,35 @@ body[data-page=nearby] .bar .brand {display:none}
 /* Selected calendar styling is shared by mobile and desktop. */
 #page-nearby #atlas-drawer-list .atlas-result:has([aria-current=true]) .result-calendar {background:var(--kit-blue);color:var(--kit-bg)}
 #hall-detail-content .meeting-plan-button[data-planned=true],.personal-meeting-plan .meeting-plan-button[data-planned=true],#page-nearby .meeting-plan-button[data-planned=true] {background:var(--kit-blue);color:var(--kit-bg);border-color:var(--kit-blue);font-weight:650}
+/* In-app directions use the same map, with an explicit location choice. */
+#page-nearby.directions-open .atlas-map-layer {inset:0}
+#page-nearby.directions-open :is(.atlas-controls,.atlas-sheet,.atlas-results-drawer,#atlas-search-area,.hall-price-pin) {display:none}
+.directions-panel {position:absolute;z-index:720;left:20px;bottom:100px;width:min(380px,calc(100% - 40px));max-height:calc(100dvh - 140px);overflow:auto;padding:20px;border:1px solid var(--kit-rule);border-radius:22px;background:var(--kit-panel);color:var(--kit-text);box-shadow:var(--kit-shadow);overscroll-behavior:contain}
+.directions-panel[hidden],.directions-panel [hidden] {display:none!important}
+.directions-heading {display:flex;align-items:center;justify-content:space-between;gap:12px}
+.directions-heading h2 {font:650 1.3rem/1.3 var(--font-interface);margin:0}
+.directions-panel button {font:550 .85rem/1.3 var(--font-interface);min-height:44px;border:1px solid var(--kit-rule);border-radius:12px;color:var(--kit-text);background:var(--kit-fill);padding:10px 14px;cursor:pointer}
+.directions-panel button:disabled {opacity:.55;cursor:wait}
+.directions-panel .directions-close {width:44px;padding:0;flex:none;background:none;border:0;font-size:24px}
+.directions-destination {font:550 .95rem/1.4 var(--font-interface);margin:4px 0 16px}
+.directions-modes {display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.directions-panel .directions-modes button[aria-pressed=true],.directions-panel .directions-locate {background:var(--kit-blue);color:var(--kit-bg);border-color:transparent}
+.directions-privacy,.directions-status {font:400 .8rem/1.5 var(--font-interface);color:var(--kit-secondary);margin:12px 0}
+.directions-start-actions {display:grid;gap:8px}
+.directions-summary {display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 0;border-top:1px solid var(--kit-rule)}
+.directions-summary strong {font:650 1.5rem/1.2 var(--font-interface)}
+.directions-summary span {font:550 .95rem/1.3 var(--font-interface);color:var(--kit-blue)}
+.directions-instructions summary {min-height:44px;cursor:pointer;font:550 .9rem/1.5 var(--font-interface);padding:10px 0}
+.directions-steps {padding-left:24px;margin:0}
+.directions-steps li {padding:10px 0;border-bottom:1px solid var(--kit-rule);font:400 .85rem/1.5 var(--font-interface)}
+.directions-steps small {display:block;color:var(--kit-secondary);font-size:.75rem}
+.directions-attribution {display:flex;flex-wrap:wrap;gap:6px 12px;margin:16px 0 0;font:400 .68rem/1.5 var(--font-interface);color:var(--kit-secondary)}
+.directions-attribution a {color:inherit;text-decoration:underline;text-underline-offset:2px}
+#page-nearby.directions-picking #real-meeting-map {cursor:crosshair}
+@media(max-width:899px){
+ .directions-panel {left:0;bottom:0;width:100%;max-height:55dvh;border-radius:24px 24px 0 0;padding:16px 20px max(16px,env(safe-area-inset-bottom))}
+ body[data-page=nearby]:has(#page-nearby.directions-open) .nav {display:none}
+ #page-nearby.directions-picking .directions-panel {max-height:42dvh}
+}
+
+@media(max-width:899px){#page-nearby.directions-open .leaflet-control-zoom{display:none}}
