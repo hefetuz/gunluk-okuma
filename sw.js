@@ -1,5 +1,5 @@
-const CACHE = 'gather-shell-fe94d611bd5a';
-const SHELL = ['./', './index.html', './ui-dist/r-fe94d611bd5a/gather.js', './ui-dist/r-fe94d611bd5a/gather.css', './icon.svg', './manifest.webmanifest', './fonts/geist-serif.woff2', './fonts/geist-sans.woff2', './fonts/geist-mono.woff2', './ui-dist/gather.webp'];
+const CACHE = 'gather-shell-a96ca1cc43f4';
+const SHELL = ['./', './index.html', './ui-dist/r-a96ca1cc43f4/gather.js', './ui-dist/r-a96ca1cc43f4/gather.css', './icon.svg', './manifest.webmanifest', './fonts/geist-serif.woff2', './fonts/geist-sans.woff2', './fonts/geist-mono.woff2', './ui-dist/gather.webp'];
 const assets = new Set(SHELL.map((path) => new URL(path, self.registration.scope).href));
 
 self.addEventListener('install', (event) => {
@@ -19,7 +19,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   url.hash = '';
   const relativePath = url.pathname.slice(new URL(self.registration.scope).pathname.length);
-  if (url.origin === location.origin && request.method === 'GET' && (/^ui-dist\/assets\/[A-Za-z0-9_-]+\.js$/.test(relativePath) || relativePath === 'ui-dist/gather2.css')) {
+  if (url.origin === location.origin && request.method === 'GET' && (/^ui-dist\/(?:r-[a-f0-9]+\/)?(?:assets\/[A-Za-z0-9_-]+\.js|gather\.(?:js|css))$/.test(relativePath))) {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE);
       const existing = await cache.match(request);
@@ -28,6 +28,10 @@ self.addEventListener('fetch', (event) => {
       if (response.ok) await cache.put(request, response.clone());
       return response;
     })());
+    return;
+  }
+  if(url.origin===location.origin&&relativePath==='daily-readings.json'&&request.method==='GET'){
+    event.respondWith(fetch(request).then(async response=>{if(response.ok)await(await caches.open(CACHE)).put(request,response.clone());return response;}).catch(async()=>await(await caches.open(CACHE)).match(request)||Response.error()));
     return;
   }
   if (request.method !== 'GET' || !assets.has(url.href)) return;

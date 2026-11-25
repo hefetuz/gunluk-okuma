@@ -1,0 +1,31 @@
+name: Refresh verified daily readings
+on:
+  schedule:
+    - cron: '15 20 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: daily-readings
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify upcoming daily references
+        run: node scripts/build-daily.cjs
+      - name: Publish updated calendar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daily-readings.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh verified daily readings"
+            git push
+            gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
+          fi
