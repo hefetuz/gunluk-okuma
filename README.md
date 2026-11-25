@@ -4,4 +4,4 @@
 
 https://hefetuz.github.io/gunluk-okuma/
 
-Günlük okuma ve ibadet araması mevcut API hizmetini kullanır. Bu bağımsız uygulama resmî JW.org uygulaması değildir. Çeviri kaynakları ve lisanslar BIBLE-SOURCE.md dosyasındadır.
+Günlük okumalar doğrulanmış statik takvimden, şehir ve ibadet aramaları Cloudflare Pages API üzerinden sunulur. Eksik günlük kayıtlar için eski API yedektir. Bu bağımsız uygulama resmî JW.org uygulaması değildir. Çeviri kaynakları ve lisanslar BIBLE-SOURCE.md dosyasındadır.
