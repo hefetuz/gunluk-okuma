@@ -1,5 +1,5 @@
-const CACHE = 'gather-shell-3ce1910c9ba4';
-const SHELL = ['./', './index.html', './ui-dist/r-3ce1910c9ba4/gather.js', './ui-dist/r-3ce1910c9ba4/gather.css', './icon.svg', './manifest.webmanifest', './fonts/geist-serif.woff2', './fonts/geist-sans.woff2', './fonts/geist-mono.woff2', './ui-dist/gather.webp'];
+const CACHE = 'gather-shell-c3d18affe601';
+const SHELL = ['./', './index.html', './ui-dist/r-c3d18affe601/gather.js', './ui-dist/r-c3d18affe601/gather.css', './icon.svg', './manifest.webmanifest', './fonts/geist-serif.woff2', './fonts/geist-sans.woff2', './fonts/geist-mono.woff2', './ui-dist/gather.webp'];
 const assets = new Set(SHELL.map((path) => new URL(path, self.registration.scope).href));
 
 self.addEventListener('install', (event) => {
@@ -19,7 +19,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   url.hash = '';
   const relativePath = url.pathname.slice(new URL(self.registration.scope).pathname.length);
-  if (url.origin === location.origin && request.method === 'GET' && (/^ui-dist\/(?:r-[a-f0-9]+\/)?(?:assets\/[A-Za-z0-9_-]+\.js|gather\.(?:js|css))$/.test(relativePath))) {
+  if (url.origin === location.origin && request.method === 'GET' && (/^ui-dist\/r-[a-f0-9]+\/(?:assets\/[A-Za-z0-9_-]+\.(?:js|css)|gather\.(?:js|css))$/.test(relativePath)||/^ui-dist\/assets\/[A-Za-z0-9_-]+\.(?:js|css)$/.test(relativePath))) {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE);
       const existing = await cache.match(request);

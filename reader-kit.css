@@ -72,10 +72,6 @@ body[data-page=bible] .bible-license a {color:var(--kit-blue)}
 #verse-attribution {background:var(--kit-panel);color:var(--kit-text);border:1px solid var(--kit-rule);padding:22px}
 #verse-attribution h2 {font:700 28px/1.2 var(--sans)}
 @media(prefers-reduced-transparency:reduce) {body[data-page=bible] .bible-reading-toolbar {background:var(--kit-bg);backdrop-filter:none}}
-@media(prefers-reduced-motion:no-preference) {
-  html:not([data-motion=reduce]) :is(.bible-reading-page,.kit-daily-header,.cennet-reading) {animation:reader-arrive 220ms ease-out}
-  @keyframes reader-arrive {from {opacity:0;transform:translateY(4px)} to {opacity:1;transform:none}}
-}
 
 .verse-pages:not([hidden]) {display:flex;justify-content:center;margin:-6px 0 4px}
 .verse-pages button {display:grid;place-items:center;width:44px;height:44px;background:none;border:0}
