@@ -1,0 +1,6 @@
+.bible-notice-settings{padding:16px}
+.bible-notice-settings h2{margin:0;font-size:1rem}
+.bible-notice-settings p{margin:6px 0 10px;color:var(--kit-secondary)}
+.bible-notice-status:empty{display:none}
+.bible-notice-invite{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:12px auto 0}
+.bible-notice-invite[hidden],.bible-notice-settings [hidden]{display:none}
